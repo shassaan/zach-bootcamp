@@ -8,6 +8,9 @@ create table players_scd_table
     current_season INTEGER,
     primary key (player_name,start_season)
 );
+
+
+
 insert into players_scd_table
 WITH with_previous AS (select player_name,
                          current_season,
@@ -32,9 +35,8 @@ select *,
        sum(change_indicator) over (partition by player_name order by current_season) as streak_identifier
 from with_indicators)
 
-select player_name,scoring_class,is_active, min(current_season) as start_season, max(current_season) as end_season, 2022 as current_season from with_streaks
+select player_name,scoring_class,is_active, min(current_season) as start_season, max(current_season) as end_season, 2021 as current_season from with_streaks
             group by player_name, streak_identifier, is_active,scoring_class order by player_name, streak_identifier
-
 
 
 

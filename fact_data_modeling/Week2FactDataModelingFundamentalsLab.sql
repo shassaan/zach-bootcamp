@@ -47,7 +47,6 @@ select * from fct_game_details
 
 
 
-
 CREATE TABLE fct_game_details (
     game_date date,
     dim_season INTEGER,
